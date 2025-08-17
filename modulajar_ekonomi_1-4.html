@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Ekonomi - Badan Usaha dan Pendapatan Nasional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .school-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .school-logo {
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .school-logo i {
+            font-size: 50px;
+            color: var(--secondary);
+        }
+        
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .module-title {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .module-title h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 18px 10px;
+            text-align: center;
+            background: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            color: var(--dark);
+        }
+        
+        .tab:hover {
+            background: #d6dbdf;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .tab i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            background: var(--secondary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .card-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .card-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .card-content li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .meeting-table th {
+            background: linear-gradient(to right, #2980b9, #3498db);
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--warning);
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .footer {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .school-logo {
+                margin: 0 auto 15px;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #ddd;
+                border-right: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="school-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="school-info">
+                    <h1>SMAN 1 Cluring</h1>
+                    <h2>Banyuwangi, Jawa Timur</h2>
+                </div>
+            </div>
+            
+            <div class="module-title">
+                <h3>📘 MODUL AJAR DEEP LEARNING</h3>
+                <p>MATA PELAJARAN : EKONOMI | BAB : BADAN USAHA DAN PENDAPATAN NASIONAL</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="identitas"><i class="fas fa-address-card"></i> Identitas Modul</div>
+            <div class="tab" data-tab="informasi"><i class="fas fa-info-circle"></i> Informasi Umum</div>
+            <div class="tab" data-tab="desain"><i class="fas fa-pencil-ruler"></i> Desain Pembelajaran</div>
+            <div class="tab" data-tab="pelaksanaan"><i class="fas fa-calendar-alt"></i> Pelaksanaan</div>
+            <div class="tab" data-tab="asesmen"><i class="fas fa-clipboard-check"></i> Asesmen</div>
+            <div class="tab" data-tab="tindaklanjut"><i class="fas fa-forward"></i> Tindak Lanjut</div>
+        </div>
+        
+        <div id="identitas" class="tab-content active">
+            <h2 class="section-title"><i class="fas fa-address-card"></i> A. IDENTITAS MODUL</h2>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-school"></i> Nama Sekolah</h3>
+                    <div class="card-content">
+                        <p>SMAN 1 Cluring</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-edit"></i> Penyusun</h3>
+                    <div class="card-content">
+                        <p>Alamsah, SE</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-book"></i> Mata Pelajaran</h3>
+                    <div class="card-content">
+                        <p>Ekonomi</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-users"></i> Kelas/Fase/Semester</h3>
+                    <div class="card-content">
+                        <p>XI/F/Ganjil</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-day"></i> Pertemuan Ke</h3>
+                    <div class="card-content">
+                        <p>1 S.d 4</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-clock"></i> Alokasi Waktu</h3>
+                    <div class="card-content">
+                        <p>20 JP (4 Pertemuan @ 5 JP)</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</h3>
+                    <div class="card-content">
+                        <p>2025/2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="informasi" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> B. INFORMASI UMUM</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-user-graduate"></i> 1. Identifikasi Kesiapan Peserta Didik</h3>
+                <div class="card-content">
+                    <p>Sebagian besar peserta didik telah mengenal aktivitas ekonomi di lingkungan sekitarnya, namun belum memahami secara formal jenis badan usaha dan peranannya dalam perekonomian. Mereka memiliki ketertarikan tinggi terhadap studi kasus nyata seperti BUMN, UMKM, dan bisnis digital. Beberapa peserta didik memerlukan penjelasan berbasis visual, simulatif, dan kontekstual.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-book-open"></i> 2. Karakteristik Materi</h3>
+                <div class="card-content">
+                    <p>Materi Badan Usaha dan Pendapatan Nasional relevan langsung dengan realitas kehidupan ekonomi masyarakat. Materi ini:</p>
+                    <ul>
+                        <li>Menanamkan pemahaman ekonomi makro dan mikro</li>
+                        <li>Mengajarkan pentingnya peran badan usaha dalam pembangunan nasional</li>
+                        <li>Mendorong pemahaman indikator ekonomi seperti PDB, Pendapatan Nasional, dan distribusi pendapatan</li>
+                    </ul>
+                    <p>Kaitannya dengan konteks lokal, aktualisasi dunia nyata, dan data statistik membuat materi ini strategis dalam membentuk literasi ekonomi abad 21.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> 3. Dimensi Profil Lulusan</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dimensi</th>
+                                <th>Relevansi dalam Pembelajaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Keimanan dan Ketakwaan</td>
+                                <td>Menumbuhkan rasa syukur atas rezeki melalui aktivitas ekonomi yang halal</td>
+                            </tr>
+                            <tr>
+                                <td>Kewargaan Global</td>
+                                <td>Menganalisis kontribusi badan usaha negara dalam keadilan sosial</td>
+                            </tr>
+                            <tr>
+                                <td>Bernalar Kritis</td>
+                                <td>Menganalisis data ekonomi, klasifikasi badan usaha, dan indikator ekonomi</td>
+                            </tr>
+                            <tr>
+                                <td>Kreativitas</td>
+                                <td>Mendesain laporan atau infografis badan usaha secara menarik dan logis</td>
+                            </tr>
+                            <tr>
+                                <td>Kolaborasi</td>
+                                <td>Diskusi kelompok, simulasi peran badan usaha, dan kerja tim dalam proyek</td>
+                            </tr>
+                            <tr>
+                                <td>Mandiri</td>
+                                <td>Merancang tugas mandiri, eksplorasi data usaha sekitar, tanggung jawab hasil</td>
+                            </tr>
+                            <tr>
+                                <td>Kesehatan</td>
+                                <td>Memahami pentingnya etika usaha dalam keseimbangan ekonomi dan lingkungan</td>
+                            </tr>
+                            <tr>
+                                <td>Komunikasi</td>
+                                <td>Presentasi hasil pengamatan dan diskusi kelompok berbasis data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="desain" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-pencil-ruler"></i> C. DESAIN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-bullseye"></i> 1. Capaian Pembelajaran (CP)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Elemen</th>
+                                <th>Capaian Pembelajaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Pemahaman Konsep</td>
+                                <td>Peserta didik memahami berbagai konsep dasar ekonomi, termasuk bentuk dan jenis badan usaha</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Pemahaman Konsep</td>
+                                <td>Peserta didik mampu mengaitkan bentuk badan usaha dengan aktivitas ekonomi di lingkungan sekitar</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Keterampilan Proses</td>
+                                <td>Peserta didik menganalisis peran dan kontribusi badan usaha negara terhadap kesejahteraan masyarakat</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Pemahaman Konsep</td>
+                                <td>Peserta didik menjelaskan pengertian dan metode menghitung pendapatan nasional</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-sitemap"></i> 2. Lintas Disiplin Ilmu</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mapel Lintas Disiplin</th>
+                                <th>Kontribusi terhadap Pembelajaran Ekonomi</th>
+                                <th>Strategi Deep Learning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bahasa Indonesia</td>
+                                <td>Menyusun laporan observasi badan usaha dan menyajikannya dalam presentasi lisan/tulisan</td>
+                                <td>Literasi informasi dan komunikasi publik</td>
+                            </tr>
+                            <tr>
+                                <td>Geografi</td>
+                                <td>Mengaitkan persebaran badan usaha dengan potensi wilayah</td>
+                                <td>Analisis spasial berbasis peta dan data wilayah</td>
+                            </tr>
+                            <tr>
+                                <td>Matematika</td>
+                                <td>Menghitung dan menafsirkan indikator ekonomi seperti PDB dan pendapatan nasional</td>
+                                <td>Numerasi terapan dalam konteks ekonomi aktual</td>
+                            </tr>
+                            <tr>
+                                <td>PPKn</td>
+                                <td>Menelaah peran negara dalam pengaturan usaha dan pemerataan kesejahteraan</td>
+                                <td>Kewarganegaraan aktif dalam kerangka keadilan sosial dan ekonomi nasional</td>
+                            </tr>
+                            <tr>
+                                <td>Informatika (Pilihan)</td>
+                                <td>Pengenalan spreadsheet, simulasi sederhana perhitungan PDB, eksplorasi pengolahan data berbasis AI</td>
+                                <td>Kecerdasan komputasional dan literasi digital ekonomi (mulai 2025/2026, Pasal 32A)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-tasks"></i> 3. Tujuan Pembelajaran</h3>
+                <div class="card-content">
+                    <table class="meeting-table">
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Topik Pembelajaran</th>
+                                <th>Tujuan Pembelajaran</th>
+                                <th>Aktivitas Pembelajaran</th>
+                                <th>Penilaian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bentuk dan Jenis Badan Usaha</td>
+                                <td>Siswa mampu mendeskripsikan minimal 3 bentuk badan usaha (PT, CV, Koperasi) dengan benar berdasarkan ciri dan kepemilikannya</td>
+                                <td>Diskusi kelompok klasifikasi badan usaha di sekitar, mencocokkan ciri dengan jenisnya, dan menjawab pertanyaan kuis interaktif</td>
+                                <td>Kuis pilihan ganda, observasi diskusi formatif</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Contoh Badan Usaha di Lingkungan</td>
+                                <td>Siswa mampu mengidentifikasi dan menyajikan minimal 2 contoh badan usaha lokal sesuai klasifikasinya secara lisan dan tulisan</td>
+                                <td>Observasi mandiri, presentasi kelompok (contoh toko kelontong, BUMDes, mini market), diskusi dan klarifikasi</td>
+                                <td>Presentasi kelompok, keterampilan berbicara</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Kinerja BUMN dan BUMD</td>
+                                <td>Siswa mampu menganalisis peran BUMN/BUMD dalam pelayanan masyarakat dan menyusun laporan mini studi kasus minimal 150 kata dalam 1 pertemuan</td>
+                                <td>Membaca artikel berita PLN, PDAM, atau Perum Bulog dan membuat refleksi dampaknya terhadap masyarakat sekitar</td>
+                                <td>Laporan mini proyek individu</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Pendapatan Nasional (Konsep Dasar)</td>
+                                <td>Siswa mampu menjelaskan konsep dan fungsi pendapatan nasional (PDB, PNB) secara tertulis dan lisan</td>
+                                <td>Guru menjelaskan definisi, metode, dan pentingnya PDB dengan bantuan grafik atau data simulasi, lalu siswa menjawab soal dan refleksi pemahaman</td>
+                                <td>Kuis & refleksi pemahaman</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="pelaksanaan" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Kegiatan Pembelajaran</th>
+                                <th>Deskripsi Kegiatan</th>
+                                <th>Menit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">1</td>
+                                <td>Pendahuluan</td>
+                                <td>Guru membuka pembelajaran dengan salam, doa, dan apersepsi. Guru mengondisikan pembelajaran yang mindful (siswa sadar pentingnya jenis badan usaha), meaningful (dikaitkan dengan usaha di sekitar), dan joyful (menyenangkan melalui eksplorasi langsung)</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Inti</td>
+                                <td>Siswa melakukan understanding dengan mengkaji ciri-ciri jenis badan usaha, applying dengan mencocokkan contoh nyata, dan reflecting melalui diskusi klasifikasi usaha lokal</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>Penutup</td>
+                                <td>Guru memberikan umpan balik, membimbing siswa menyimpulkan materi, dan melakukan refleksi singkat. Pembelajaran ditutup dengan salam dan doa</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">2</td>
+                                <td>Pendahuluan</td>
+                                <td>Pembelajaran dimulai dengan salam dan doa. Guru menumbuhkan semangat belajar melalui pendekatan mindful (melihat peluang usaha lokal), meaningful (menghubungkan usaha dengan pelaku ekonomi), dan joyful (presentasi kelompok)</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Inti</td>
+                                <td>Siswa melakukan understanding terhadap klasifikasi usaha, applying melalui observasi nyata dan menyusun contoh, lalu reflecting dengan menyajikan hasilnya kepada teman</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>Penutup</td>
+                                <td>Guru menutup dengan umpan balik dan refleksi, serta memperkuat pemahaman melalui tanya jawab ringan</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">3</td>
+                                <td>Pendahuluan</td>
+                                <td>Guru menyapa siswa, berdoa, dan menyampaikan tujuan pembelajaran. Guru mengajak siswa menyadari pentingnya peran BUMN/BUMD (mindful), dampaknya terhadap masyarakat (meaningful), dan mengkaitkannya dengan pengalaman nyata (joyful)</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Inti</td>
+                                <td>Siswa membaca berita atau artikel tentang BUMN/BUMD (understanding), melakukan analisis dan diskusi (applying), serta menyusun laporan sederhana dari hasil pengamatan atau sumber daring (reflecting)</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>Penutup</td>
+                                <td>Guru menyampaikan kesimpulan, memberikan refleksi akhir, serta motivasi untuk melihat kontribusi negara dalam perekonomian</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">4</td>
+                                <td>Pendahuluan</td>
+                                <td>Guru membuka pembelajaran dengan salam dan doa. Pembelajaran diawali dengan mindful (siswa memahami pentingnya pendapatan nasional), meaningful (dihubungkan dengan kesejahteraan rakyat), dan joyful (melalui data visual/grafik)</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Inti</td>
+                                <td>Siswa mendalami konsep PDB, PNB, serta metode perhitungan (understanding), melakukan simulasi sederhana dengan data (applying), dan merefleksikan makna indikator ekonomi nasional dalam kehidupan sehari-hari</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>Penutup</td>
+                                <td>Guru memberikan ringkasan dan umpan balik, mengajak siswa menyampaikan pendapat, dan menutup dengan doa bersama</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="asesmen" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> E. ASESMEN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-search"></i> 1. Asesmen Awal (Diagnostik)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Kuis pilihan ganda singkat (online/offline)</td>
+                                <td>Mengidentifikasi pengetahuan awal siswa tentang jenis badan usaha</td>
+                                <td>5 soal kuis tentang pengertian PT, CV, koperasi</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tanya jawab lisan berbasis gambar</td>
+                                <td>Mengetahui sejauh mana siswa mengenali contoh badan usaha di lingkungan</td>
+                                <td>Gambar berbagai jenis usaha + pertanyaan pemantik</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Survey mini refleksi (Google Form/kertas)</td>
+                                <td>Mengetahui pemahaman awal siswa tentang peran BUMN/BUMD</td>
+                                <td>Form isian singkat: "Apa peran PLN/PDAM menurutmu?"</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Cerita kontekstual (studi kasus ringan)</td>
+                                <td>Mengetahui pemahaman awal siswa tentang pertumbuhan ekonomi & PDB</td>
+                                <td>Narasi pendek + pertanyaan terbuka</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-bar"></i> 2. Asesmen Proses (Formatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Observasi & Peta Konsep</td>
+                                <td>Menilai pemahaman siswa terhadap klasifikasi badan usaha</td>
+                                <td>Peta konsep bentuk usaha (dikerjakan berpasangan)</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Infografis & Presentasi</td>
+                                <td>Menilai kemampuan siswa menyajikan contoh badan usaha lokal</td>
+                                <td>Infografis digital/manual dan presentasi lisan</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Jurnal Refleksi & Laporan Mini</td>
+                                <td>Mengukur kemampuan analisis siswa terhadap peran BUMN/BUMD</td>
+                                <td>Lembar refleksi & laporan studi kasus</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Diskusi & Tanya jawab tertulis</td>
+                                <td>Menilai pemahaman konsep PDB, PNB, dan penggunaannya</td>
+                                <td>Lembar pertanyaan terbuka dan latihan sederhana</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tindaklanjut" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-forward"></i> F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <div class="card">
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Tindak Lanjut Remedial</th>
+                                <th>Tindak Lanjut Pengayaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Siswa dibimbing kembali secara klasikal/melalui tutor sebaya untuk memahami klasifikasi badan usaha. Diberikan soal pilihan ganda dan uraian level rendah.</td>
+                                <td>Siswa membuat klasifikasi visual badan usaha di daerah lain (nasional), dan menjelaskan dalam bentuk diagram interaktif atau digital (Canva/PowerPoint).</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Siswa yang belum tuntas diberi bimbingan untuk mengidentifikasi contoh usaha di sekitar dengan bantuan guru dan lembar kerja bergambar.</td>
+                                <td>Siswa diminta mengobservasi langsung satu badan usaha lokal dan membuat video pendek menjelaskan klasifikasi dan perannya.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Siswa dibimbing membaca berita/laporan sederhana tentang BUMN/BUMD dan dibantu menyusun laporan mini dengan format terbimbing.</td>
+                                <td>Siswa melakukan analisis perbandingan dua BUMN/BUMD dan menyajikan dalam bentuk infografis atau artikel opini mini.</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Siswa diberikan latihan soal perhitungan dan pemahaman PDB secara bertahap dan dibantu mengulang konsep melalui video pembelajaran sederhana.</td>
+                                <td>Siswa membuat analisis tren data PDB Indonesia vs negara ASEAN dan mempresentasikan hasilnya di depan kelas atau di ruang virtual (Google Sites).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-university"></i>
+                    <span>SMA Negeri 1 Benculuk Cluring Banyuwangi</span>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 - Modul Ajar Ekonomi | Badan Usaha dan Pendapatan Nasional</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Ekonomi - Penguatan Konsep Ekonomi Dasar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #9b59b6;
+            --accent: #e74c3c;
+            --light: #f5eef8;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f4fc 0%, #f0e5f7 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .school-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .school-logo {
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .school-logo i {
+            font-size: 50px;
+            color: var(--secondary);
+        }
+        
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .module-title {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .module-title h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 18px 10px;
+            text-align: center;
+            background: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            color: var(--dark);
+        }
+        
+        .tab:hover {
+            background: #e8daef;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .tab i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            background: var(--secondary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .card-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .card-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .card-content li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #f4ecf7;
+        }
+        
+        .meeting-table th {
+            background: linear-gradient(to right, #8e44ad, #9b59b6);
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--warning);
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .footer {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .contextual-box {
+            background: linear-gradient(to right, #f4ecf7, #e8daef);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            margin: 20px 0;
+        }
+        
+        .contextual-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contextual-box h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .contextual-box ul {
+            padding-left: 20px;
+        }
+        
+        .contextual-box li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .school-logo {
+                margin: 0 auto 15px;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #ddd;
+                border-right: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            table, th, td {
+                font-size: 0.9rem;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            th, td {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="school-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="school-info">
+                    <h1>SMAN 1 Cluring</h1>
+                    <h2>Banyuwangi, Jawa Timur</h2>
+                </div>
+            </div>
+            
+            <div class="module-title">
+                <h3>📘 MODUL AJAR DEEP LEARNING</h3>
+                <p>MATA PELAJARAN : EKONOMI | BAB : PENGUATAN KONSEP EKONOMI DASAR</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="identitas"><i class="fas fa-address-card"></i> Identitas Modul</div>
+            <div class="tab" data-tab="informasi"><i class="fas fa-info-circle"></i> Informasi Umum</div>
+            <div class="tab" data-tab="desain"><i class="fas fa-pencil-ruler"></i> Desain Pembelajaran</div>
+            <div class="tab" data-tab="pelaksanaan"><i class="fas fa-calendar-alt"></i> Pelaksanaan</div>
+            <div class="tab" data-tab="asesmen"><i class="fas fa-clipboard-check"></i> Asesmen</div>
+            <div class="tab" data-tab="tindaklanjut"><i class="fas fa-forward"></i> Tindak Lanjut</div>
+        </div>
+        
+        <div id="identitas" class="tab-content active">
+            <h2 class="section-title"><i class="fas fa-address-card"></i> A. IDENTITAS MODUL</h2>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-school"></i> Nama Sekolah</h3>
+                    <div class="card-content">
+                        <p>SMAN 1 Cluring</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-edit"></i> Penyusun</h3>
+                    <div class="card-content">
+                        <p>Alamsah, SE</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-book"></i> Mata Pelajaran</h3>
+                    <div class="card-content">
+                        <p>Ekonomi</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-users"></i> Kelas/Fase/Semester</h3>
+                    <div class="card-content">
+                        <p>XI/F/Ganjil</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-day"></i> Pertemuan Ke</h3>
+                    <div class="card-content">
+                        <p>17 S.d 19</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-clock"></i> Alokasi Waktu</h3>
+                    <div class="card-content">
+                        <p>15 JP (3 Pertemuan @ 5 JP)</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</h3>
+                    <div class="card-content">
+                        <p>2025/2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="informasi" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> B. INFORMASI UMUM</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-user-graduate"></i> 1. Identifikasi Kesiapan Peserta Didik</h3>
+                <div class="card-content">
+                    <p>Peserta didik pada fase ini umumnya telah mempelajari konsep-konsep dasar ekonomi sejak pertemuan awal hingga PTS. Mereka memiliki latar belakang kemampuan heterogen: sebagian telah menguasai konsep pendapatan nasional, pertumbuhan ekonomi, inflasi, kebijakan fiskal/moneter, akuntansi dasar, serta masalah ekonomi di lingkup nasional dan internasional. Minat belajar umumnya tinggi pada aktivitas yang bersifat praktis, games, diskusi kasus nyata, dan simulasi.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-book-open"></i> 2. Karakteristik Materi</h3>
+                <div class="card-content">
+                    <p>Materi ekonomi dasar pada pertemuan 17–19 menekankan pada peninjauan kembali topik-topik pokok, evaluasi capaian belajar, serta pemahaman mendalam melalui pengayaan. Konsep yang direview mencakup pendapatan nasional, pertumbuhan ekonomi, kemiskinan & kesenjangan ekonomi, inflasi, kebijakan fiskal/moneter, akuntansi dasar, serta literasi keuangan digital. Materi ini relevan dengan konteks nyata karena membantu peserta didik memahami dinamika ekonomi di lingkungan sekitar, regional, maupun global.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> 3. Dimensi Profil Lulusan Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dimensi</th>
+                                <th>Relevansi dengan Materi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Keimanan dan Ketakwaan</td>
+                                <td>Mendorong peserta didik merefleksi peran etika dan kejujuran dalam kegiatan ekonomi</td>
+                            </tr>
+                            <tr>
+                                <td>Kewargaan Global</td>
+                                <td>Menghubungkan isu ekonomi lokal dengan ekonomi global untuk menumbuhkan empati</td>
+                            </tr>
+                            <tr>
+                                <td>Penalaran Kritis</td>
+                                <td>Mengasah analisis data ekonomi, mengkritisi kebijakan fiskal dan moneter</td>
+                            </tr>
+                            <tr>
+                                <td>Kreativitas</td>
+                                <td>Mendorong siswa membuat simulasi kebijakan ekonomi atau infografis literasi keuangan</td>
+                            </tr>
+                            <tr>
+                                <td>Kolaborasi</td>
+                                <td>Pembelajaran melalui diskusi kelompok, studi kasus, serta proyek ekonomi sederhana</td>
+                            </tr>
+                            <tr>
+                                <td>Mandiri</td>
+                                <td>Siswa diberikan tugas individu untuk menyusun refleksi ekonomi pribadi</td>
+                            </tr>
+                            <tr>
+                                <td>Kesehatan</td>
+                                <td>Mengaitkan kesejahteraan ekonomi dengan pemenuhan kebutuhan dasar</td>
+                            </tr>
+                            <tr>
+                                <td>Komunikasi</td>
+                                <td>Siswa melatih kemampuan menyampaikan ide dan solusi ekonomi secara tertulis dan lisan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="desain" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-pencil-ruler"></i> C. DESAIN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-bullseye"></i> 1. Capaian Pembelajaran (CP)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Elemen</th>
+                                <th>Capaian Pembelajaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17</td>
+                                <td>Pemahaman Konsep & Keterampilan Proses</td>
+                                <td>Peserta didik meninjau kembali konsep-konsep ekonomi dasar, memvalidasi pemahaman melalui kegiatan interaktif</td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td>Pemahaman Konsep & Keterampilan Proses</td>
+                                <td>Peserta didik menganalisis dan menginterpretasikan konsep ekonomi melalui pemecahan masalah nyata</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Pemahaman Konsep & Keterampilan Proses</td>
+                                <td>Peserta didik mengikuti kegiatan tindak lanjut berupa remedial dan pengayaan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-sitemap"></i> 2. Lintas Disiplin Ilmu</h3>
+                <div class="card-content">
+                    <ul>
+                        <li><strong>Matematika:</strong> Menghitung dan mereview data ekonomi seperti pendapatan nasional, tingkat pertumbuhan ekonomi, inflasi</li>
+                        <li><strong>Akuntansi:</strong> Mendukung pemahaman peserta didik dalam penerapan persamaan dasar akuntansi dan analisis arus kas</li>
+                        <li><strong>Bahasa Indonesia:</strong> Membantu peserta didik dalam mengomunikasikan hasil diskusi dan menulis refleksi</li>
+                        <li><strong>TIK:</strong> Digunakan dalam penggunaan aplikasi interaktif dan formulir online untuk kuis</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-tasks"></i> 3. Tujuan Pembelajaran</h3>
+                <div class="card-content">
+                    <table class="meeting-table">
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Topik/BAB</th>
+                                <th>Tujuan Pembelajaran (SMART)</th>
+                                <th>Aktivitas Pembelajaran</th>
+                                <th>Penilaian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17</td>
+                                <td>Review & Pemantapan Materi</td>
+                                <td>Setelah mengikuti pembelajaran, peserta didik mampu meninjau kembali konsep-konsep utama ekonomi dasar secara tepat</td>
+                                <td>- Diskusi tinjauan topik<br>- Games ekonomi<br>- Latihan soal individu & kelompok</td>
+                                <td>Penilaian sikap, partisipasi aktif, dan hasil latihan soal</td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td>Pemahaman Konsep & Aplikasi</td>
+                                <td>Setelah mengikuti pembelajaran, peserta didik mampu menganalisis dan menginterpretasikan konsep ekonomi melalui pemecahan masalah nyata</td>
+                                <td>- Studi kasus ekonomi<br>- Refleksi tertulis/infografis<br>- Diskusi kelompok dan presentasi mini</td>
+                                <td>Penilaian proses diskusi, kualitas argumen, dan hasil refleksi</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Remedial & Pengayaan</td>
+                                <td>Setelah mengikuti tindak lanjut, peserta didik mampu memperbaiki capaian hasil belajar melalui tugas remedial atau menghasilkan karya pengayaan</td>
+                                <td>- Analisis capaian belajar<br>- Diskusi kelompok remedial<br>- Tantangan projek ekonomi pengayaan<br>- Tugas mandiri</td>
+                                <td>Hasil tugas remedial/pengayaan, catatan refleksi, dan presentasi karya</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="contextual-box">
+                <h3><i class="fas fa-lightbulb"></i> 4. Topik Pembelajaran Kontekstual</h3>
+                <ul>
+                    <li><strong>Pendapatan Nasional & Pertumbuhan Ekonomi di Daerah:</strong> Membahas data pendapatan daerah, kemiskinan, kesenjangan ekonomi di sekitar peserta didik</li>
+                    <li><strong>Permasalahan Inflasi Lokal & Harga Kebutuhan Pokok:</strong> Diskusi dampak inflasi yang dialami keluarga/pasar sekitar</li>
+                    <li><strong>Kebijakan Fiskal & Pajak Daerah:</strong> Mengaitkan materi dengan contoh APBD, pajak kendaraan bermotor</li>
+                    <li><strong>Akuntansi Sederhana untuk UMKM:</strong> Konteks unit usaha kecil di lingkungan sekitar</li>
+                    <li><strong>Ekonomi Digital:</strong> Literasi transaksi digital, contoh e-wallet, marketplace</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="pelaksanaan" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Tahapan</th>
+                                <th>Langkah Kegiatan Pembelajaran</th>
+                                <th>Durasi (Menit)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">17</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru membuka pembelajaran dengan salam, doa, dan presensi<br>- Guru mengondisikan peserta didik dalam suasana mindful<br>- Guru menjelaskan keterkaitan topik hari ini dengan kehidupan nyata<br>- Guru menciptakan suasana belajar yang menyenangkan melalui ice breaking singkat</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Guru memandu peserta didik meninjau kembali materi pokok ekonomi<br>- Guru membagi peserta didik menjadi kelompok kecil<br>- Peserta didik mengikuti games interaktif (Tebak Konsep) menggunakan HP<br>- Peserta didik mengerjakan latihan soal (individu atau kelompok)<br>- Kelompok mempresentasikan hasil diskusi dan latihan soal</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Guru memberikan umpan balik terhadap hasil diskusi dan latihan<br>- Peserta didik melakukan refleksi pembelajaran<br>- Guru merangkum dan menyampaikan kesimpulan pembelajaran<br>- Guru menutup dengan salam dan doa</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">18</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru membuka pembelajaran dengan salam, doa, dan presensi<br>- Guru menyegarkan kembali semangat belajar<br>- Guru menyampaikan tujuan pembelajaran hari ini dan manfaatnya<br>- Guru mengajak peserta didik bermain kuis ringan</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Guru menjelaskan materi lanjutan atau penguatan dari topik sebelumnya<br>- Peserta didik membaca materi ringkasan<br>- Peserta didik mengerjakan lembar kerja (LKPD) atau studi kasus ekonomi<br>- Peserta didik berdiskusi dalam kelompok kecil<br>- Tiap kelompok menyampaikan hasil diskusi</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Guru memberikan apresiasi terhadap keterlibatan aktif peserta didik<br>- Peserta didik menyampaikan refleksi pribadi<br>- Guru mengingatkan materi yang akan datang<br>- Guru menutup pembelajaran dengan salam dan doa</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">19</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru membuka pembelajaran dengan salam, doa, dan presensi<br>- Guru menjelaskan tujuan pertemuan remedial & pengayaan<br>- Guru menyampaikan manfaat tindak lanjut<br>- Ice breaking ringan</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Guru menyampaikan hasil analisis PTS<br>- Guru membagi peserta didik menjadi dua kelompok<br>- Kelompok Remedial: Mengulas ulang materi sulit, diskusi bimbingan<br>- Kelompok Pengayaan: Menyusun mini project atau studi kasus lanjutan<br>- Tiap kelompok mempresentasikan hasil kerja</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Guru memberikan umpan balik langsung pada hasil masing-masing kelompok<br>- Peserta didik menulis refleksi pribadi di Google Sites<br>- Guru menyampaikan apresiasi atas upaya capaian belajar<br>- Penutupan dengan salam dan doa</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="asesmen" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> E. ASESMEN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-search"></i> 1. Asesmen Awal (Diagnostik)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17</td>
+                                <td>Kuis cepat (pre-test), pertanyaan lisan, diskusi awal</td>
+                                <td>Mengetahui sejauh mana peserta didik masih mengingat/memahami materi sebelumnya</td>
+                                <td>Kuis di LMS Google Sites, pertanyaan diskusi kelompok</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Analisis hasil belajar, refleksi capaian individu</td>
+                                <td>Mengidentifikasi topik mana yang perlu remedial & pengayaan</td>
+                                <td>Lembar analisis hasil belajar, refleksi tertulis di LMS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-bar"></i> 2. Asesmen Proses (Formatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17</td>
+                                <td>Observasi keaktifan, produk: Peta Konsep/Kuis, Jurnal Refleksi</td>
+                                <td>Mengamati partisipasi aktif & penguasaan konsep saat games/latihan soal</td>
+                                <td>Catatan observasi guru, hasil kuis di Google Sites, jurnal refleksi di HP</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Observasi kegiatan remedial/pengayaan, produk: Mini project, Jurnal Refleksi</td>
+                                <td>Menilai proses perbaikan capaian & pengayaan kompetensi melalui tugas berdiferensiasi</td>
+                                <td>Rubrik observasi bimbingan, hasil presentasi mini project, jurnal refleksi Google Sites</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-trophy"></i> 3. Asesmen Akhir (Sumatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Sumatif</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen Rubrik</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17</td>
+                                <td>Penilaian produk: Peta Konsep/Infografis hasil review</td>
+                                <td>Mengukur pemahaman akhir peserta didik tentang materi inti & keterampilan memvisualkan konsep</td>
+                                <td>Rubrik penilaian Peta Konsep/Infografis: ketepatan isi, kreativitas, kerapihan</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Penilaian remedial/pengayaan: Mini project, analisis isu ekonomi</td>
+                                <td>Mengukur kemampuan peserta didik menerapkan solusi kreatif & menjiwai nilai Pancasila</td>
+                                <td>Rubrik penilaian project: pemahaman isu, solusi, kreativitas, kolaborasi, nilai Pancasila</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tindaklanjut" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-forward"></i> F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <div class="card">
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Tindak Lanjut Remedial</th>
+                                <th>Tindak Lanjut Pengayaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17</td>
+                                <td>Peserta didik yang belum memahami konsep utama diberikan bimbingan tambahan melalui diskusi ulang, soal-soal latihan lanjutan, dan materi ringkas di LMS Google Sites yang bisa diakses via HP</td>
+                                <td>Peserta didik yang sudah tuntas dapat diminta membuat rangkuman kreatif, peta konsep lanjutan, atau infografis topik ekonomi lalu mempresentasikan di kelas/LMS</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>Peserta didik kelompok remedial menyelesaikan tugas-tugas perbaikan capaian melalui soal remedial, bimbingan tatap muka/online, dan refleksi individu</td>
+                                <td>Peserta didik kelompok pengayaan melaksanakan mini project lanjutan (misalnya membuat laporan analisis sederhana isu ekonomi lokal) dan membagikan di LMS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-university"></i>
+                    <span>SMA Negeri 1 Benculuk Cluring Banyuwangi</span>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 - Modul Ajar Ekonomi | Penguatan Konsep Ekonomi Dasar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

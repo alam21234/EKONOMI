@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Ekonomi - Pendapatan Nasional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --purple: #9b59b6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--purple));
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .school-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .school-logo {
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .school-logo i {
+            font-size: 50px;
+            color: var(--purple);
+        }
+        
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .module-title {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .module-title h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 18px 10px;
+            text-align: center;
+            background: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            color: var(--dark);
+        }
+        
+        .tab:hover {
+            background: #d6dbdf;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid var(--purple);
+            color: var(--purple);
+        }
+        
+        .tab i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--purple);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            background: var(--purple);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--purple);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: var(--purple);
+        }
+        
+        .card-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .card-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .card-content li::before {
+            content: "•";
+            color: var(--purple);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(to right, var(--primary), var(--purple));
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .meeting-table th {
+            background: linear-gradient(to right, #8e44ad, #9b59b6);
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--warning);
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background: var(--purple);
+            color: white;
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .footer {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .contextual-box {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            margin: 20px 0;
+        }
+        
+        .contextual-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contextual-box h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .contextual-box ul {
+            padding-left: 20px;
+        }
+        
+        .contextual-box li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .school-logo {
+                margin: 0 auto 15px;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #ddd;
+                border-right: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            table, th, td {
+                font-size: 0.9rem;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            th, td {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="school-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="school-info">
+                    <h1>SMAN 1 Cluring</h1>
+                    <h2>Banyuwangi, Jawa Timur</h2>
+                </div>
+            </div>
+            
+            <div class="module-title">
+                <h3>📘 MODUL AJAR DEEP LEARNING</h3>
+                <p>MATA PELAJARAN : EKONOMI | BAB : PENDAPATAN NASIONAL, KESENJANGAN PENDAPATAN, DAN KETENAGAKERJAAN</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="identitas"><i class="fas fa-address-card"></i> Identitas Modul</div>
+            <div class="tab" data-tab="informasi"><i class="fas fa-info-circle"></i> Informasi Umum</div>
+            <div class="tab" data-tab="desain"><i class="fas fa-pencil-ruler"></i> Desain Pembelajaran</div>
+            <div class="tab" data-tab="pelaksanaan"><i class="fas fa-calendar-alt"></i> Pelaksanaan</div>
+            <div class="tab" data-tab="asesmen"><i class="fas fa-clipboard-check"></i> Asesmen</div>
+            <div class="tab" data-tab="tindaklanjut"><i class="fas fa-forward"></i> Tindak Lanjut</div>
+        </div>
+        
+        <div id="identitas" class="tab-content active">
+            <h2 class="section-title"><i class="fas fa-address-card"></i> A. IDENTITAS MODUL</h2>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-school"></i> Nama Sekolah</h3>
+                    <div class="card-content">
+                        <p>SMAN 1 Cluring</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-edit"></i> Penyusun</h3>
+                    <div class="card-content">
+                        <p>Alamsah, SE</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-book"></i> Mata Pelajaran</h3>
+                    <div class="card-content">
+                        <p>Ekonomi</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-users"></i> Kelas/Fase/Semester</h3>
+                    <div class="card-content">
+                        <p>XI/F/Ganjil</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-day"></i> Pertemuan Ke</h3>
+                    <div class="card-content">
+                        <p>5 S.d 8</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-clock"></i> Alokasi Waktu</h3>
+                    <div class="card-content">
+                        <p>20 JP (4 Pertemuan @ 5 JP)</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</h3>
+                    <div class="card-content">
+                        <p>2025/2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="informasi" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> B. INFORMASI UMUM</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-user-graduate"></i> 1. Identifikasi Kesiapan Peserta Didik</h3>
+                <div class="card-content">
+                    <p>Peserta didik kelas XI memiliki pengetahuan dasar tentang konsep ekonomi dari materi sebelumnya, seperti konsep kebutuhan, kelangkaan, dan skala prioritas. Minat belajar beragam, umumnya peserta didik tertarik dengan isu-isu ekonomi yang dekat dengan kehidupan nyata (seperti lapangan kerja, penghasilan keluarga, dan distribusi pendapatan). Peserta didik membutuhkan contoh-contoh nyata agar dapat memahami perhitungan pendapatan nasional dan keterkaitannya dengan masalah ketenagakerjaan dan kesenjangan ekonomi. Kesiapan literasi numerasi perlu diperkuat melalui latihan perhitungan sederhana.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-book-open"></i> 2. Karakteristik Materi</h3>
+                <div class="card-content">
+                    <p>Materi Pendapatan Nasional, Kesenjangan Pendapatan, dan Ketenagakerjaan relevan dengan Profil lulusan, khususnya menjiwai nilai keadilan sosial dan gotong royong dalam konteks distribusi pendapatan yang merata. Konsep ini kontekstual karena berkaitan langsung dengan kondisi ekonomi nasional yang dihadapi Indonesia, seperti pertumbuhan ekonomi yang tidak merata, angka pengangguran, dan tantangan ketenagakerjaan. Materi ini signifikan untuk melatih peserta didik berpikir kritis, menganalisis data ekonomi, dan merumuskan solusi berbasis kebijakan.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> 3. Dimensi Profil Lulusan Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dimensi</th>
+                                <th>Relevansi dengan Materi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Keimanan dan Ketakwaan</td>
+                                <td>Menumbuhkan sikap adil, empati, dan tanggung jawab sosial dalam memahami distribusi ekonomi</td>
+                            </tr>
+                            <tr>
+                                <td>Kewargaan</td>
+                                <td>Memahami peran warga negara dalam mendorong keadilan ekonomi melalui kebijakan publik</td>
+                            </tr>
+                            <tr>
+                                <td>Penalaran Kritis</td>
+                                <td>Menganalisis data ekonomi, penyebab kesenjangan pendapatan, dan dampaknya terhadap ketenagakerjaan</td>
+                            </tr>
+                            <tr>
+                                <td>Kreativitas</td>
+                                <td>Merancang solusi inovatif dalam mengatasi ketimpangan ekonomi melalui simulasi kebijakan</td>
+                            </tr>
+                            <tr>
+                                <td>Kolaborasi</td>
+                                <td>Bekerja sama dalam diskusi kelompok, studi kasus, dan debat simulasi kebijakan</td>
+                            </tr>
+                            <tr>
+                                <td>Mandiri</td>
+                                <td>Mengembangkan kemampuan analisis dan pengambilan keputusan ekonomi secara individual</td>
+                            </tr>
+                            <tr>
+                                <td>Kesehatan</td>
+                                <td>Menyadari hubungan antara pengangguran dan kesejahteraan masyarakat, termasuk kesehatan mental dan fisik</td>
+                            </tr>
+                            <tr>
+                                <td>Komunikasi</td>
+                                <td>Mengkomunikasikan gagasan dan argumen ekonomi secara lisan dan tertulis secara logis dan etis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="desain" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-pencil-ruler"></i> C. DESAIN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-bullseye"></i> 1. Capaian Pembelajaran (CP)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Elemen</th>
+                                <th>Capaian Pembelajaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Pemahaman Konsep</td>
+                                <td>Peserta didik menjelaskan metode perhitungan pendapatan nasional (metode produksi, pendapatan, pengeluaran) melalui latihan perhitungan sederhana.</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Pemahaman Konsep & Keterampilan Proses</td>
+                                <td>Peserta didik menganalisis penyebab terjadinya kesenjangan pendapatan melalui studi kasus, diskusi, dan refleksi.</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Keterampilan Proses</td>
+                                <td>Peserta didik membuat solusi untuk mengatasi kesenjangan distribusi pendapatan melalui simulasi kebijakan pajak/subsidi dan debat kelas.</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Pemahaman Konsep & Keterampilan Proses</td>
+                                <td>Peserta didik menjelaskan konsep ketenagakerjaan, indikator angkatan kerja, serta memprediksi masalah ketenagakerjaan di lingkungan sekitar melalui brainstorming & kuis.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-sitemap"></i> 2. Lintas Disiplin Ilmu</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mata Pelajaran</th>
+                                <th>Keterkaitan dengan Materi Ekonomi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Matematika</td>
+                                <td>Menghitung pendapatan nasional menggunakan data kuantitatif, serta membaca dan menginterpretasi grafik dan tabel ekonomi.</td>
+                            </tr>
+                            <tr>
+                                <td>Sosiologi</td>
+                                <td>Menganalisis dampak kesenjangan ekonomi terhadap struktur sosial masyarakat dan ketimpangan akses kerja.</td>
+                            </tr>
+                            <tr>
+                                <td>Pendidikan Pancasila</td>
+                                <td>Menginternalisasi nilai keadilan sosial, gotong royong, dan keberagaman dalam merumuskan solusi distribusi pendapatan.</td>
+                            </tr>
+                            <tr>
+                                <td>KKA (Koding dan Kecerdasan Artifisial)</td>
+                                <td>Menggunakan perangkat lunak spreadsheet atau HTML untuk menyusun simulasi perhitungan pendapatan nasional dan visualisasi data ketenagakerjaan.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-tasks"></i> 3. Tujuan Pembelajaran</h3>
+                <div class="card-content">
+                    <table class="meeting-table">
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Topik</th>
+                                <th>Tujuan Pembelajaran</th>
+                                <th>Aktivitas Pembelajaran</th>
+                                <th>Penilaian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Pendapatan Nasional</td>
+                                <td>Peserta didik mampu menjelaskan metode perhitungan Pendapatan Nasional secara akurat melalui latihan perhitungan sederhana.</td>
+                                <td>Diskusi klasikal, penjelasan metode, contoh soal, latihan hitung, presentasi hasil.</td>
+                                <td>Tugas individu: lembar kerja perhitungan nasional</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Kesenjangan Pendapatan</td>
+                                <td>Peserta didik mampu menganalisis secara kritis penyebab kesenjangan pendapatan di Indonesia.</td>
+                                <td>Studi kasus, diskusi kelompok, penyusunan peta pikiran, penulisan esai reflektif.</td>
+                                <td>Penilaian esai & hasil diskusi kelompok</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Solusi Kesenjangan Pendapatan</td>
+                                <td>Peserta didik mampu merumuskan solusi untuk mengurangi kesenjangan distribusi pendapatan.</td>
+                                <td>Simulasi kebijakan, diskusi peran, debat kelas, voting dan refleksi argumentasi.</td>
+                                <td>Penilaian performa debat & kekuatan argumentasi</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Ketenagakerjaan</td>
+                                <td>Peserta didik mampu menjelaskan konsep ketenagakerjaan, jenis angkatan kerja, dan indikator pengangguran.</td>
+                                <td>Brainstorming konsep, diskusi interaktif, klasifikasi jenis angkatan kerja, kuis individu.</td>
+                                <td>Hasil kuis individu & partisipasi diskusi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="contextual-box">
+                <h3><i class="fas fa-lightbulb"></i> 4. Topik Pembelajaran Kontekstual</h3>
+                <p>Topik yang diangkat dikaitkan dengan situasi nyata di Indonesia, antara lain:</p>
+                <ul>
+                    <li><strong>Pendapatan Nasional</strong>: Pertumbuhan ekonomi Indonesia, PDB & PNB terbaru.</li>
+                    <li><strong>Kesenjangan Pendapatan</strong>: Data ketimpangan pendapatan di kota/desa, relevansi dengan kesejahteraan masyarakat.</li>
+                    <li><strong>Solusi Distribusi Pendapatan</strong>: Simulasi kebijakan pajak progresif, subsidi BBM, bantuan sosial.</li>
+                    <li><strong>Ketenagakerjaan</strong>: Isu pengangguran generasi muda, angkatan kerja produktif, dan upaya penciptaan lapangan kerja di era digital.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="pelaksanaan" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Tahap</th>
+                                <th>Kegiatan Pembelajaran</th>
+                                <th>Menit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">5</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru memulai dengan salam dan doa. - Guru menjelaskan tujuan pembelajaran. - Mindful: Menyadarkan relevansi perhitungan PDB/PNB. - Meaningful: Mengaitkan topik dengan data nyata PDB Indonesia. - Joyful: Ice breaking hitung cepat angka PDB di papan tulis.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Guru memaparkan metode perhitungan disertai contoh data riil. - Diskusi klasikal membedah tabel PDB Indonesia. - Siswa latihan perhitungan secara individu/kelompok. - Siswa mendemonstrasikan hasil hitungan. - Refleksi: tanya jawab tentang kesulitan siswa.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Umpan balik hasil hitung siswa. - Siswa menuliskan refleksi singkat. - Penutupan dengan salam dan doa.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">6</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru membuka dengan salam dan doa. - Penjelasan tujuan pembelajaran. - Mindful: Menayangkan infografis ketimpangan ekonomi. - Meaningful: Diskusi dampak ketimpangan pendapatan. - Joyful: Kuis cepat "Benar/Salah" fakta kesenjangan.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Guru memaparkan teori penyebab ketimpangan pendapatan. - Siswa dalam kelompok kecil menganalisis studi kasus nyata. - Applying: Membuat mind map dan presentasi. - Reflecting: Menulis refleksi peran dalam mengurangi ketimpangan.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Umpan balik hasil presentasi. - Diskusi kelas menarik kesimpulan. - Penutupan dengan salam dan pengingat tugas esai.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">7</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru membuka dengan salam dan doa. - Penjelasan tujuan pembelajaran. - Mindful: Mengaitkan kondisi nyata kebijakan fiskal. - Meaningful: Tanya jawab tentang kebijakan pajak. - Joyful: Ice breaking debat mini subsidi BBM.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Penjelasan instrumen kebijakan distribusi pendapatan. - Siswa dibagi kelompok pro & kontra: simulasi debat kebijakan. - Applying: Presentasi solusi dan simulasi dampak kebijakan. - Reflecting: Membuat kesimpulan kebijakan relevan di Indonesia.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Umpan balik terhadap argumentasi. - Siswa menyimpulkan poin-poin penting. - Refleksi: dukungan distribusi pendapatan adil. - Penutupan.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">8</td>
+                                <td>PENDAHULUAN</td>
+                                <td>- Guru membuka dengan salam dan doa. - Penjelasan tujuan pembelajaran. - Mindful: Menampilkan data pengangguran nasional. - Meaningful: Tanya jawab dampak pengangguran. - Joyful: Quiz true/false dengan handphone.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>- Penjelasan definisi tenaga kerja, angkatan kerja, indikator pengangguran. - Diskusi: Brainstorming jenis pekerjaan masa depan. - Applying: Menganalisis data pengangguran di daerah. - Reflecting: Menulis rencana pribadi persiapan pasar kerja.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>- Umpan balik hasil kuis & diskusi. - Siswa menarik kesimpulan. - Refleksi rencana pekerjaan masa depan. - Penutupan.</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="asesmen" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> E. ASESMEN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-search"></i> 1. Asesmen Awal (Diagnostik)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Contoh Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Tanya jawab, kuis lisan</td>
+                                <td>Mengetahui pemahaman awal tentang pendapatan nasional</td>
+                                <td>Kuis cepat: "Apa itu PDB?"</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Tanya jawab, studi kasus mini</td>
+                                <td>Mengetahui pengetahuan awal tentang ketimpangan pendapatan</td>
+                                <td>Cerita kasus singkat tentang pendapatan tinggi & rendah</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Kuis, diskusi pembuka</td>
+                                <td>Mengetahui ide awal tentang solusi kesenjangan</td>
+                                <td>Voting mini: "Pajak progresif lebih baik dari subsidi BBM?"</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Tanya jawab, brainstorming</td>
+                                <td>Mengetahui pemahaman awal tentang tenaga kerja</td>
+                                <td>Brainstorm: "Apa jenis-jenis pekerjaan di sekitar kita?"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-bar"></i> 2. Asesmen Proses (Formatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Observasi & produk</td>
+                                <td>Mengukur kemampuan menerapkan metode perhitungan</td>
+                                <td>LKPD latihan hitung pendapatan nasional</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Observasi & produk</td>
+                                <td>Mengukur kemampuan menganalisis penyebab kesenjangan</td>
+                                <td>Poster studi kasus, peta konsep faktor penyebab</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Observasi & produk</td>
+                                <td>Mengukur kemampuan merumuskan & mengkomunikasikan solusi</td>
+                                <td>Catatan hasil debat, jaring solusi distribusi pendapatan</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Observasi & produk</td>
+                                <td>Mengukur kemampuan memahami konsep ketenagakerjaan</td>
+                                <td>Hasil brainstorming, kuis digital</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-trophy"></i> 3. Asesmen Akhir (Sumatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Sumatif</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen Rubrik</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Tugas individu</td>
+                                <td>Menilai kemampuan menjelaskan & menghitung pendapatan nasional</td>
+                                <td>Rubrik perhitungan: akurasi, ketelitian, argumentasi hasil</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Esai reflektif</td>
+                                <td>Menilai kemampuan menganalisis penyebab kesenjangan</td>
+                                <td>Rubrik esai: kelengkapan faktor, relevansi, keterkaitan data</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Penilaian proyek</td>
+                                <td>Menilai kemampuan menyusun & mempresentasikan solusi</td>
+                                <td>Rubrik proyek: kreativitas solusi, kolaborasi debat, argumentasi logis</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Kuis & refleksi</td>
+                                <td>Menilai penguasaan konsep ketenagakerjaan</td>
+                                <td>Rubrik kuis: jawaban benar & orisinalitas rencana</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tindaklanjut" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-forward"></i> F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <div class="card">
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Tindak Lanjut Remedial</th>
+                                <th>Tindak Lanjut Pengayaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5</td>
+                                <td>Siswa yang belum tuntas diberikan bimbingan ulang secara individu/kelompok kecil, contoh soal tambahan, diskusi step by step.</td>
+                                <td>Siswa yang sudah tuntas diberikan soal perhitungan dengan data lebih kompleks, lalu mempresentasikan cara hitungnya di Google Sites.</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Siswa yang belum mampu menganalisis diminta membaca ulang studi kasus, dibimbing menyusun mind map faktor, diskusi tutor sebaya.</td>
+                                <td>Siswa yang sudah baik membuat analisis lanjutan: membandingkan data kesenjangan di daerah lain, membuat infografis, publikasi di ruang virtual.</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Siswa yang kesulitan merumuskan solusi didampingi membuat draft ide kebijakan, latihan argumentasi dengan role play berpasangan.</td>
+                                <td>Siswa yang sudah mahir menulis proposal mini kebijakan, membuat video pendek simulasi debat, dibagikan melalui Google Sites.</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Siswa yang belum paham konsep ketenagakerjaan diberikan soal kuis ulang, tanya jawab istilah kunci, & diskusi penguatan.</td>
+                                <td>Siswa yang sudah tuntas membuat rencana karir individu lebih detail, memetakan peluang kerja masa depan, presentasi di forum kelas virtual.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-university"></i>
+                    <span>SMA Negeri 1 Benculuk Cluring Banyuwangi</span>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 - Modul Ajar Ekonomi | Pendapatan Nasional, Kesenjangan Pendapatan, dan Ketenagakerjaan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

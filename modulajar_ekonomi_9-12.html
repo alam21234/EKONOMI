@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Ekonomi - Pengangguran, Uang, dan Inflasi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --accent: #e74c3c;
+            --light: #fdf2e9;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .school-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .school-logo {
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .school-logo i {
+            font-size: 50px;
+            color: var(--secondary);
+        }
+        
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .module-title {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .module-title h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 18px 10px;
+            text-align: center;
+            background: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            color: var(--dark);
+        }
+        
+        .tab:hover {
+            background: #f5e6d8;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .tab i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            background: var(--secondary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .card-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .card-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .card-content li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #fef5eb;
+        }
+        
+        .meeting-table th {
+            background: linear-gradient(to right, #d35400, #e67e22);
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--warning);
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .footer {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .contextual-box {
+            background: linear-gradient(to right, #fef5eb, #fdebd0);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            margin: 20px 0;
+        }
+        
+        .contextual-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contextual-box h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .contextual-box ul {
+            padding-left: 20px;
+        }
+        
+        .contextual-box li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .school-logo {
+                margin: 0 auto 15px;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: 1px solid #ddd;
+                border-right: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            table, th, td {
+                font-size: 0.9rem;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            th, td {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="school-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="school-info">
+                    <h1>SMAN 1 Cluring</h1>
+                    <h2>Banyuwangi, Jawa Timur</h2>
+                </div>
+            </div>
+            
+            <div class="module-title">
+                <h3>📘 MODUL AJAR DEEP LEARNING</h3>
+                <p>MATA PELAJARAN : EKONOMI | BAB : PERMASALAHAN PENGANGGURAN, UANG, DAN INFLASI</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="identitas"><i class="fas fa-address-card"></i> Identitas Modul</div>
+            <div class="tab" data-tab="informasi"><i class="fas fa-info-circle"></i> Informasi Umum</div>
+            <div class="tab" data-tab="desain"><i class="fas fa-pencil-ruler"></i> Desain Pembelajaran</div>
+            <div class="tab" data-tab="pelaksanaan"><i class="fas fa-calendar-alt"></i> Pelaksanaan</div>
+            <div class="tab" data-tab="asesmen"><i class="fas fa-clipboard-check"></i> Asesmen</div>
+            <div class="tab" data-tab="tindaklanjut"><i class="fas fa-forward"></i> Tindak Lanjut</div>
+        </div>
+        
+        <div id="identitas" class="tab-content active">
+            <h2 class="section-title"><i class="fas fa-address-card"></i> A. IDENTITAS MODUL</h2>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-school"></i> Nama Sekolah</h3>
+                    <div class="card-content">
+                        <p>SMAN 1 Cluring</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-edit"></i> Penyusun</h3>
+                    <div class="card-content">
+                        <p>Alamsah, SE</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-book"></i> Mata Pelajaran</h3>
+                    <div class="card-content">
+                        <p>Ekonomi</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-users"></i> Kelas/Fase/Semester</h3>
+                    <div class="card-content">
+                        <p>XI/F/Ganjil</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-day"></i> Pertemuan Ke</h3>
+                    <div class="card-content">
+                        <p>9 S.d 12</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-clock"></i> Alokasi Waktu</h3>
+                    <div class="card-content">
+                        <p>20 JP (4 Pertemuan @ 5 JP)</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Tahun Pelajaran</h3>
+                    <div class="card-content">
+                        <p>2025/2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="informasi" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> B. INFORMASI UMUM</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-user-graduate"></i> 1. Identifikasi Kesiapan Peserta Didik</h3>
+                <div class="card-content">
+                    <p>Peserta didik berada pada fase remaja akhir yang telah memiliki kemampuan berpikir logis, bernalar kritis, dan mulai memahami keterkaitan antara fenomena ekonomi dengan kehidupan nyata. Sebagian besar peserta didik memiliki ketertarikan terhadap isu-isu ekonomi aktual seperti pengangguran, inflasi, dan kebijakan moneter. Mereka membutuhkan pendekatan pembelajaran yang kontekstual agar dapat mengaitkan teori ekonomi dengan praktik nyata di lingkungan sekitar, sekaligus mengembangkan keterampilan pengamatan, analisis data, dan pemecahan masalah.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-book-open"></i> 2. Karakteristik Materi</h3>
+                <div class="card-content">
+                    <p>Materi dalam bab ini mencakup:</p>
+                    <ul>
+                        <li>Konsep dasar pengangguran dan jenis-jenisnya</li>
+                        <li>Fungsi dan peredaran uang</li>
+                        <li>Inflasi dan deflasi</li>
+                        <li>Penghitungan Indeks Harga Konsumen (IHK)</li>
+                    </ul>
+                    <p>Materi diajarkan melalui pendekatan kontekstual: pengamatan langsung, wawancara, diskusi kasus, simulasi aktivitas ekonomi, dan latihan perhitungan sederhana. Tujuannya adalah untuk membentuk peserta didik yang kritis, mandiri, dan mampu memahami solusi dari permasalahan ekonomi di sekitarnya.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> 3. Dimensi Profil Lulusan Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dimensi</th>
+                                <th>Relevansi dengan Materi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Keimanan dan Ketakwaan</td>
+                                <td>Mengaitkan nilai-nilai etika dan kejujuran dalam pengelolaan ekonomi</td>
+                            </tr>
+                            <tr>
+                                <td>Kewargaan</td>
+                                <td>Memahami hak dan kewajiban ekonomi sebagai warga negara</td>
+                            </tr>
+                            <tr>
+                                <td>Penalaran Kritis</td>
+                                <td>Menganalisis data pengangguran dan inflasi secara logis dan sistematis</td>
+                            </tr>
+                            <tr>
+                                <td>Kreativitas</td>
+                                <td>Merancang solusi ekonomi berbasis realitas lokal</td>
+                            </tr>
+                            <tr>
+                                <td>Kolaborasi</td>
+                                <td>Bekerja sama dalam diskusi dan simulasi ekonomi</td>
+                            </tr>
+                            <tr>
+                                <td>Mandiri</td>
+                                <td>Mengelola proyek atau studi kasus secara individu</td>
+                            </tr>
+                            <tr>
+                                <td>Kesehatan</td>
+                                <td>Mengenali dampak ekonomi terhadap kesejahteraan masyarakat</td>
+                            </tr>
+                            <tr>
+                                <td>Komunikasi</td>
+                                <td>Menyampaikan hasil analisis dan pendapat ekonomi secara lisan/tulisan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="desain" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-pencil-ruler"></i> C. DESAIN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-bullseye"></i> 1. Capaian Pembelajaran (CP)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Elemen</th>
+                                <th>Capaian Pembelajaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9</td>
+                                <td>Pemahaman Konsep, Keterampilan Proses</td>
+                                <td>Menyajikan data pengangguran di lingkungan sekitar; menjelaskan jenis-jenis pengangguran, penyebab, dampak, serta upaya penanggulangannya.</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Pemahaman Konsep, Keterampilan Proses</td>
+                                <td>Menjelaskan konsep fungsi uang, peredaran uang, permintaan dan penawaran uang melalui simulasi peredaran uang dalam aktivitas ekonomi masyarakat.</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Pemahaman Konsep, Keterampilan Proses</td>
+                                <td>Menghitung Indeks Harga Konsumen (IHK) dan menjelaskan kaitannya dengan inflasi; menganalisis data inflasi sederhana dengan latihan hitung.</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Pemahaman Konsep, Keterampilan Proses</td>
+                                <td>Menjelaskan inflasi dan deflasi, jenis-jenisnya, penyebabnya, dampaknya, serta alternatif solusi melalui diskusi kasus kenaikan harga kebutuhan pokok.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-sitemap"></i> 2. Lintas Disiplin Ilmu</h3>
+                <div class="card-content">
+                    <ul>
+                        <li><strong>Matematika:</strong> Perhitungan IHK, inflasi, dan interpretasi data statistik ekonomi.</li>
+                        <li><strong>Geografi/Sosiologi:</strong> Pengamatan kondisi sosial-ekonomi masyarakat terkait pengangguran dan inflasi.</li>
+                        <li><strong>Bahasa Indonesia:</strong> Menulis laporan hasil wawancara/observasi, menyusun refleksi dan presentasi.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-tasks"></i> 3. Tujuan Pembelajaran</h3>
+                <div class="card-content">
+                    <table class="meeting-table">
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Topik/BAB</th>
+                                <th>Tujuan Pembelajaran (SMART)</th>
+                                <th>Aktivitas Pembelajaran</th>
+                                <th>Penilaian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9</td>
+                                <td>Pengangguran</td>
+                                <td>Setelah mengikuti pembelajaran, peserta didik mampu menyajikan data jenis-jenis pengangguran, menganalisis penyebab & dampak pengangguran di lingkungan sekitar dengan benar</td>
+                                <td>Wawancara, observasi mini di lingkungan, diskusi kelompok, presentasi data</td>
+                                <td>Laporan kelompok, penilaian sikap kritis</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Permintaan & Penawaran Uang</td>
+                                <td>Setelah mengikuti pembelajaran, peserta didik mampu menjelaskan fungsi uang & peredarannya, serta mempraktikkan simulasi peredaran uang dengan tepat & mandiri</td>
+                                <td>Simulasi peredaran uang, diskusi, tanya jawab, refleksi mandiri</td>
+                                <td>Tanya jawab, penilaian partisipasi, refleksi individu</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Indeks Harga Konsumen & Inflasi</td>
+                                <td>Setelah mengikuti pembelajaran, peserta didik mampu menghitung IHK dan inflasi berdasarkan data sederhana serta menafsirkan hasilnya secara logis</td>
+                                <td>Latihan menghitung data IHK, diskusi hasil perhitungan, tanya jawab</td>
+                                <td>Tugas hitung, kuis, diskusi hasil</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Inflasi & Deflasi</td>
+                                <td>Setelah mengikuti pembelajaran, peserta didik mampu menjelaskan inflasi & deflasi, mengidentifikasi penyebab, dampak, serta solusi melalui diskusi kasus aktual</td>
+                                <td>Diskusi kasus kenaikan harga, refleksi kelompok, presentasi hasil diskusi kasus</td>
+                                <td>Refleksi, diskusi, penilaian sikap kritis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="contextual-box">
+                <h3><i class="fas fa-lightbulb"></i> 4. Topik Pembelajaran Kontekstual</h3>
+                <ul>
+                    <li><strong>Pertemuan 9:</strong> Pengamatan data pengangguran di desa/kelurahan setempat, wawancara dengan warga/petugas kelurahan.</li>
+                    <li><strong>Pertemuan 10:</strong> Simulasi perputaran uang di pasar tradisional atau mini market setempat; menganalisis bagaimana uang beredar di masyarakat.</li>
+                    <li><strong>Pertemuan 11:</strong> Penggunaan data inflasi lokal (misal data harga kebutuhan pokok di pasar sekitar) untuk latihan menghitung IHK.</li>
+                    <li><strong>Pertemuan 12:</strong> Diskusi kasus nyata: contoh kenaikan harga beras atau BBM; mengidentifikasi penyebab, dampak pada masyarakat sekitar, dan solusi pemerintah.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="pelaksanaan" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Kegiatan Pembelajaran</th>
+                                <th>Deskripsi</th>
+                                <th>Menit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">9</td>
+                                <td>PENDAHULUAN</td>
+                                <td>• Guru membuka pembelajaran dengan salam, doa bersama, dan presensi.<br>• Guru memandu siswa untuk fokus pada tujuan hari ini.<br>• Guru menjelaskan relevansi materi.<br>• Ice breaking singkat agar suasana belajar menyenangkan.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>Understanding: Konsep pengangguran, jenis-jenis, penyebab, dan dampak.<br>Applying: Siswa dibagi kelompok, melakukan simulasi wawancara/observasi mini di lingkungan.<br>Reflecting: Setiap kelompok mendiskusikan hasil observasi, menyajikan data di Google Sites kelas.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>• Guru memfasilitasi umpan balik.<br>• Bersama siswa menyusun kesimpulan.<br>• Siswa menuliskan refleksi individu.<br>• Guru menutup dengan salam dan doa.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">10</td>
+                                <td>PENDAHULUAN</td>
+                                <td>• Guru membuka pembelajaran dengan salam, doa bersama, dan presensi.<br>• Guru memandu siswa fokus pada tujuan.<br>• Guru menjelaskan keterkaitan materi.<br>• Ice breaking tentang "bagaimana uang berpindah tangan".</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>Understanding: Materi tentang fungsi uang, permintaan dan penawaran uang, serta peredaran uang.<br>Applying: Siswa melakukan simulasi peredaran uang: peran sebagai konsumen, produsen, dan bank.<br>Reflecting: Diskusi kelompok: apa yang terjadi jika peredaran uang terhambat?</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>• Guru memandu siswa memberi umpan balik hasil simulasi.<br>• Guru dan siswa menarik kesimpulan.<br>• Siswa menuliskan refleksi individu.<br>• Guru menutup dengan salam dan doa.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">11</td>
+                                <td>PENDAHULUAN</td>
+                                <td>• Guru membuka pembelajaran dengan salam, doa bersama, dan presensi.<br>• Guru mengajak siswa fokus pada tujuan.<br>• Guru menjelaskan relevansi materi.<br>• Kuis ringan tentang tren harga.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>Understanding: Konsep IHK, inflasi, cara menghitung, dan maknanya.<br>Applying: Siswa dibagi kelompok, diberikan data harga sederhana, lalu menghitung IHK.<br>Reflecting: Siswa mendiskusikan bagaimana inflasi memengaruhi daya beli masyarakat.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>• Guru memfasilitasi umpan balik tentang cara menghitung dan hasil analisis data.<br>• Bersama siswa menarik kesimpulan hubungan IHK dengan inflasi.<br>• Siswa menuliskan refleksi individu.<br>• Guru menutup dengan salam dan doa.</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">12</td>
+                                <td>PENDAHULUAN</td>
+                                <td>• Guru membuka pembelajaran dengan salam, doa bersama, dan presensi.<br>• Guru memandu siswa fokus pada tujuan.<br>• Guru mengaitkan materi dengan kasus nyata.<br>• Ice breaking "berdebat seru".</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>INTI</td>
+                                <td>Understanding: Materi: definisi inflasi & deflasi, jenis, penyebab, dampak, dan kebijakan penanganan.<br>Applying: Siswa melakukan diskusi kasus: contoh kenaikan harga beras atau BBM.<br>Reflecting: Kelompok lain memberikan umpan balik atas solusi yang diajukan.</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>PENUTUP</td>
+                                <td>• Guru memfasilitasi umpan balik & menekankan pentingnya solusi praktis.<br>• Bersama siswa menarik kesimpulan.<br>• Siswa menuliskan refleksi individu.<br>• Guru menutup dengan salam dan doa.</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="asesmen" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> E. ASESMEN PEMBELAJARAN</h2>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-search"></i> 1. Asesmen Awal (Diagnostik)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9</td>
+                                <td>Tanya jawab, diskusi awal</td>
+                                <td>Mengidentifikasi pengetahuan awal tentang pengangguran di lingkungan sekitar</td>
+                                <td>Pertanyaan lisan: "Pernahkah kalian melihat orang yang tidak bekerja? Apa dampaknya?"</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Kuis lisan</td>
+                                <td>Mengidentifikasi pemahaman awal tentang fungsi uang dan aktivitas jual-beli</td>
+                                <td>Kuis singkat: "Apa saja bentuk uang di sekitar kita? Bagaimana uang bisa berpindah tangan?"</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Kuis, diskusi awal</td>
+                                <td>Mengidentifikasi pemahaman awal tentang inflasi dan perubahan harga barang</td>
+                                <td>Soal lisan: "Apa yang kalian rasakan saat harga beras naik? Mengapa harga bisa naik?"</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Tanya jawab, diskusi kasus</td>
+                                <td>Mengidentifikasi pengetahuan awal tentang inflasi & deflasi serta kebijakan pemerintah</td>
+                                <td>Diskusi awal: "Pernah dengar istilah deflasi? Bagaimana pemerintah mengatasi kenaikan harga?"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-bar"></i> 2. Asesmen Proses (Formatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9</td>
+                                <td>Observasi, Laporan Observasi, Jurnal Refleksi</td>
+                                <td>Menilai keterlibatan siswa saat wawancara/observasi dan kemampuan menyusun data pengangguran</td>
+                                <td>Ceklis observasi partisipasi, laporan kelompok di Google Sites, jurnal refleksi per individu</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Observasi, Simulasi, Jurnal Refleksi</td>
+                                <td>Menilai pemahaman siswa melalui simulasi peredaran uang dan sikap mandiri</td>
+                                <td>Ceklis partisipasi simulasi, lembar catatan simulasi di Google Sites, jurnal refleksi individu</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Produk (Latihan Hitung), Jurnal Refleksi</td>
+                                <td>Menilai keterampilan menghitung IHK, interpretasi data, dan kesadaran kritis</td>
+                                <td>Tugas hitung IHK, grafik tren harga, catatan interpretasi hasil, jurnal refleksi di Google Sites</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Observasi Diskusi, Infografis, Jurnal Refleksi</td>
+                                <td>Menilai kemampuan analisis kasus inflasi-deflasi dan solusi praktis</td>
+                                <td>Rubrik diskusi kasus, infografis solusi kebijakan, catatan refleksi individu di Google Sites</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-trophy"></i> 3. Asesmen Akhir (Sumatif)</h3>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Sumatif</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen Rubrik</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9</td>
+                                <td>Penilaian Proyek Laporan</td>
+                                <td>Mengukur kemampuan siswa menganalisis isu pengangguran di sekitar & menuliskan laporan data</td>
+                                <td>Rubrik: Keakuratan data, kelengkapan analisis, kreativitas penyajian, kolaborasi, nilai gotong royong</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Penilaian Proyek Simulasi</td>
+                                <td>Mengukur kemampuan siswa menjelaskan peredaran uang melalui simulasi praktis</td>
+                                <td>Rubrik: Pemahaman konsep, akurasi catatan, kreativitas peran, refleksi mandiri, penjiwaan kejujuran</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Penilaian Produk Hitungan</td>
+                                <td>Mengukur kemampuan siswa menghitung IHK & inflasi, serta analisis sederhana</td>
+                                <td>Rubrik: Ketepatan hitung, interpretasi data, penyajian grafik, refleksi kritis, sikap tanggung jawab</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Penilaian Proyek Kasus</td>
+                                <td>Mengukur kemampuan siswa menganalisis kasus inflasi/deflasi & merumuskan solusi kebijakan</td>
+                                <td>Rubrik: Kejelasan analisis isu, relevansi solusi, kreativitas infografis, partisipasi diskusi, nilai musyawarah</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tindaklanjut" class="tab-content">
+            <h2 class="section-title"><i class="fas fa-forward"></i> F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <div class="card">
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Tindak Lanjut Remedial</th>
+                                <th>Tindak Lanjut Pengayaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9</td>
+                                <td>Peserta didik yang belum mampu menyusun data pengangguran dengan benar akan dibimbing membuat tabel sederhana, memetakan ulang hasil wawancara, dan berdiskusi ulang secara berkelompok dengan contoh data yang lebih sederhana.</td>
+                                <td>Peserta didik yang sudah tuntas akan diberi tugas menganalisis tren pengangguran nasional melalui artikel berita terbaru, lalu menulis ringkasan tren dan prediksi solusi, kemudian mengunggah ke Google Sites.</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Peserta didik yang belum memahami alur peredaran uang akan diminta mengulang simulasi dalam kelompok kecil dengan contoh peran lebih sederhana, serta mengerjakan lembar pertanyaan refleksi tambahan.</td>
+                                <td>Peserta didik yang tuntas akan membuat skenario simulasi lanjutan: misalnya peran bank sentral dalam mengatur peredaran uang, dan mempresentasikan hasil skenario simulasi di Google Sites.</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Peserta didik yang masih keliru menghitung IHK akan dibimbing menghitung ulang dengan data harga yang lebih mudah, menggunakan kalkulator di handphone, serta didampingi teman tutor sebaya.</td>
+                                <td>Peserta didik yang tuntas akan menganalisis perbandingan data IHK beberapa daerah (bisa mencari data daring) lalu membuat grafik tren sederhana dan refleksi dampaknya, kemudian mengunggah hasilnya ke Google Sites.</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Peserta didik yang belum mampu menjelaskan inflasi-deflasi dengan tepat akan diberikan bacaan penunjang (artikel populer), lalu diminta membuat mindmap tentang penyebab & dampak, serta mendiskusikannya kembali dalam kelompok kecil.</td>
+                                <td>Peserta didik yang sudah tuntas akan diminta membuat infografis tambahan berisi rekomendasi kebijakan pemerintah yang realistis untuk menekan inflasi, kemudian mempresentasikan hasilnya di Google Sites untuk menjadi bahan diskusi kelas dan inspirasi warga sekolah atau orang tua yang melihat.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-university"></i>
+                    <span>SMA Negeri 1 Benculuk Cluring Banyuwangi</span>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 - Modul Ajar Ekonomi | Permasalahan Pengangguran, Uang, dan Inflasi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
