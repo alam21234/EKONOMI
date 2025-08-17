@@ -2,7 +2,7 @@
 
 Website pembelajaran interaktif untuk mata pelajaran **Ekonomi Kelas XI** di **SMA Negeri 1 Cluring, Banyuwangi**. Proyek ini dirancang untuk menyediakan akses mudah ke materi ajar, modul pembelajaran, dan fasilitas digital yang mendukung pendidikan modern berbasis teknologi, seni, dan budaya lokal.
 
-![Halaman Depan Ekonomi XI](screenshot.png) <!-- Ganti dengan path gambar jika ada -->
+![https://alam21234.github.io/EKONOMI/) <!-- Ganti dengan path gambar jika ada -->
 
 ---
 
