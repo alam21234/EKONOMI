@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capaian Pembelajaran Ekonomi - BSKAP No.32/2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --light: #f0f9ff;
+            --dark: #0f172a;
+            --gray: #64748b;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #0c2d6b);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            background-color: var(--light);
+            padding: 8px;
+            border-radius: 8px;
+            color: var(--primary);
+        }
+        
+        ol, ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        li::before {
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        ol li::before {
+            content: counter(list-item) ".";
+            counter-increment: list-item;
+        }
+        
+        ul li::before {
+            content: "•";
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 1rem;
+            font-weight: 500;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f1f5f9;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: -1px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 5px;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0 8px 8px 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: var(--gray);
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                border-radius: 0;
+                margin-right: 0;
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CAPAIAN PEMBELAJARAN</h1>
+        <h2>MATA PELAJARAN : EKONOMI</h2>
+        <p>(Keputusan BSKAP Nomor : 32 Tahun 2024)</p>
+    </header>
+    
+    <div class="container">
+        <!-- Rasional -->
+        <section id="rasional">
+            <h2 class="section-title">A. RASIONAL</h2>
+            <div class="card">
+                <p>Perkembangan ilmu pengetahuan dan teknologi telah membawa manusia pada perubahan besar dalam kehidupan bermasyarakat. Tingginya mobilitas orang, barang, jasa, dan informasi antarruang merupakan akibat perubahan besar dari perkembangan ilmu pengetahuan dan teknologi. Dinamika tersebut membuat manusia berupaya meningkatkan kualitas dirinya agar sejalan dengan perubahan-perubahan yang terjadi sehingga mampu bertahan hidup serta memenuhi berbagai kebutuhan dasarnya sesuai dengan konteks zaman.</p>
+                
+                <p>Berbagai perkembangan yang terjadi dalam lingkungan masyarakat telah memengaruhi berbagai aspek, salah satunya adalah aspek ekonomi. Banyak kegiatan masyarakat yang telah berubah dan bertransformasi sedemikian rupa mengikuti perkembangan zaman. Beberapa perubahan dan transformasi tersebut ditunjukkan melalui adanya kemudahan dalam mengakses informasi, kemudahan dalam melakukan pembayaran, kecepatan mobilitas barang dan jasa, dan makin banyaknya bentuk usaha kerakyatan yang berbasis digital. Hal tersebut memberikan dampak pada berubahnya paradigma mata pelajaran Ekonomi, khususnya yang diberikan pada jenjang sekolah menengah atas.</p>
+                
+                <p>Pada praktiknya, perubahan belum tentu menjadi lebih baik. Namun, tanpa perubahan, kebaruan tidak akan terjadi. Perubahan paradigma dalam mata pelajaran Ekonomi diharapkan akan diikuti dengan perubahan tindakan ekonomi yang sesuai dengan perkembangan zaman. Perubahan paradigma mata pelajaran Ekonomi diharapkan juga mendukung penyelesaian masalah-masalah sosial kontemporer pada masyarakat, seperti ketimpangan ekonomi, kemiskinan, dan pengangguran.</p>
+                
+                <p>Mata pelajaran Ekonomi merupakan mata pelajaran yang fokus pada pembahasan mengenai berbagai upaya manusia dalam rangka mempertahankan hidupnya. Mata pelajaran Ekonomi memuat cakupan materi yang kompleks dan mempunyai relevansi tinggi dalam kehidupan sehari-hari. Dalam konteks menguatkan pengetahuan dan keterampilan, masyarakat perlu dibekali dengan mata pelajaran Ekonomi yang mendunia, tetapi tetap berpijak pada kearifan lokal. Mata pelajaran Ekonomi yang berkearifan lokal menjadi mutlak diperlukan agar masyarakat memiliki berbagai kompetensi yang dibutuhkan guna menyikapi berbagai fenomena dan masalah perekonomian baik di lingkungan kecil seperti keluarga maupun di lingkungan besar seperti masyarakat internasional.</p>
+                
+                <div class="highlight">
+                    <p>Dengan demikian, mata pelajaran Ekonomi perlu dibangun dengan paradigma bahwa dunia dapat berubah dengan cepat mengikuti perkembangan zaman. Oleh sebab itu, paradigma mata pelajaran Ekonomi perlu diarahkan pada upaya:</p>
+                    <ol>
+                        <li>mendorong peserta didik untuk mencari tahu dari berbagai sumber yang tersedia, bukan sekadar diberi tahu;</li>
+                        <li>mendorong peserta didik untuk merumuskan masalah dengan melatih kemampuan bertanya melalui bantuan mesin (komputer dan/atau ponsel pintar) yang dapat menyajikan dan memproses data secara cepat;</li>
+                        <li>memotivasi peserta didik dan melatih berpikir analitis (pengambilan keputusan) bukan berpikir mekanis (rutin) yang dapat dilakukan oleh mesin yang terprogram; dan</li>
+                        <li>menekankan pentingnya kerja sama dan kolaborasi dalam menyelesaikan masalah sehingga dapat mengomunikasikan informasi yang dihasilkan, baik cara perolehan maupun kegunaan informasi tersebut.</li>
+                    </ol>
+                </div>
+                
+                <p>Dengan mempelajari mata pelajaran Ekonomi, peserta didik diharapkan memiliki karakter mandiri dan bernalar kritis sesuai dengan nilai-nilai yang tertuang dalam profil pelajar Pancasila. Mandiri berarti peserta didik bertanggung jawab atas proses dan hasil belajarnya dalam mata pelajaran Ekonomi. Sementara itu, bernalar kritis berarti peserta didik secara objektif memproses informasi, baik kualitatif maupun kuantitatif, membangun keterkaitan antara berbagai informasi, menganalisis informasi, mengevaluasi, dan menyimpulkan.</p>
+            </div>
+        </section>
+        
+        <!-- Tujuan -->
+        <section id="tujuan">
+            <h2 class="section-title">B. TUJUAN</h2>
+            <div class="card">
+                <p>Mata pelajaran Ekonomi bertujuan untuk memastikan peserta didik:</p>
+                <ol>
+                    <li>memanfaatkan sumber daya secara efisien dan berkelanjutan;</li>
+                    <li>memahami masalah ekonomi dan menyelesaikannya secara bertanggung jawab;</li>
+                    <li>memahami aktivitas ekonomi yang sifatnya dinamis dan meminimalisasi dampak buruk dari dinamika perekonomian tersebut;</li>
+                    <li>merencanakan masa depan berkaitan dengan kegiatan ekonomi yang dilakukan dan mengambil keputusan terkait isu atau masalah-masalah keuangan; dan</li>
+                    <li>bersikap kritis dalam menyikapi kebijakan-kebijakan ekonomi di tingkat lokal, nasional, dan internasional serta memetakan dampak suatu kebijakan ekonomi bagi para pihak atau pemangku kepentingan.</li>
+                </ol>
+            </div>
+        </section>
+        
+        <!-- Karakteristik -->
+        <section id="karakteristik">
+            <h2 class="section-title">C. KARAKTERISTIK</h2>
+            <div class="card">
+                <p>Mata pelajaran Ekonomi merupakan mata pelajaran yang bersumber dari perilaku ekonomi dalam kehidupan sosial masyarakat yang diseleksi dengan menggunakan konsep-konsep ilmu ekonomi untuk meningkatkan pengetahuan dan keterampilan peserta didik. Kehidupan sosial masyarakat di era digital ditunjukkan melalui terciptanya interaksi sosial yang serbacepat, antarindividu atau kelompok dalam cakupan yang lebih luas, melewati batas ruang dan waktu, serta memunculkan daya saing dan sistem nilai yang saling berpengaruh antarindividu dan kelompok.</p>
+                
+                <p>Keluasan mata pelajaran Ekonomi sepatutnya diarahkan bukan hanya pada aspek penguasaan materi, melainkan juga pada peningkatan kompetensi. Rumusan kompetensi difokuskan pada fenomena empiris ekonomi yang ada di sekitar peserta didik sehingga peserta didik dapat memahami, mengamati, menanya, mengumpulkan informasi, mengorganisasikan informasi, menarik kesimpulan, mengomunikasikan, merefleksikan, dan merencanakan projek lanjutan secara kolaboratif terkait fenomena dan masalah ekonomi.</p>
+                
+                <p>Mata pelajaran Ekonomi mengandung dua elemen, yaitu pemahaman konsep dan keterampilan proses. Kedua elemen secara komprehensif mendukung peserta didik untuk memiliki literasi ekonomi dan finansial serta keterampilannya. Literasi ekonomi yang ingin dibangun mencakup keterampilan menganalisis kondisi ekonomi sehingga peserta didik mampu membuat keputusan ekonomi, membuat pilihan dalam alokasi sumber daya, dan menyelesaikan permasalahan ekonomi. Sementara itu, literasi finansial yang ingin dibangun mencakup keterampilan pengambilan keputusan terhadap penggalian sumber keuangan dan penggunaannya, menghindari sumber keuangan dan pembelanjaan yang tidak efektif yang berpotensi pada tindakan konsumtif, serta menciptakan peluang sumber keuangan yang produktif lainnya sesuai dengan kapasitas peserta didik.</p>
+                
+                <p>Melalui kedua literasi tersebut, peserta didik diarahkan untuk bersikap menghargai kehidupan melalui pemanfaatan barang atau jasa yang memiliki nilai ekonomis sekaligus ekologis seperti benda atau jasa yang keberadaannya tidak menimbulkan potensi dampak lingkungan. Lingkup mata pelajaran Ekonomi meliputi konsep ilmu ekonomi, ekonomi makro, ekonomi internasional, dan akuntansi keuangan dasar. Peserta didik dapat menggunakan lingkungan sebagai sumber belajar, seperti pasar tradisional, koperasi, lembaga keuangan bank dan bukan bank, industri kreatif, sumber daya kelautan, pesisir, hutan, dan sebagainya.</p>
+                
+                <h3 class="card-title">Elemen dan Deskripsi</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Elemen</th>
+                            <th>Deskripsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pemahaman Konsep</td>
+                            <td>
+                                <p>Pemahaman konsep dalam mata pelajaran Ekonomi memuat pemahaman terhadap materi meliputi definisi dan konsep yang dikaitkan dengan fenomena dan masalah ekonomi yang terjadi. Pemahaman konsep difokuskan pada materi yang akan digunakan untuk menjawab pertanyaan kunci yang juga dikaitkan dengan materi lain yang relevan sehingga perlu direkomendasikan materi ajar yang relevan. Elemen pemahaman konsep adalah elemen yang mengarahkan peserta didik untuk mendefinisikan, menafsirkan, dan merumuskan konsep atau teori dengan bahasa mereka sendiri. Pada elemen ini, peserta didik tidak hanya hafal secara verbal, tetapi juga memahami konsep dari masalah atau fakta yang ditanyakan.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Keterampilan Proses</td>
+                            <td>
+                                <p>Pendekatan keterampilan proses pada hakikatnya adalah suatu pengelolaan kegiatan pembelajaran yang berfokus pada pelibatan peserta didik secara aktif dan kreatif dalam pemerolehan hasil belajar. Pendekatan keterampilan proses dapat meningkatkan hasil belajar peserta didik. Elemen keterampilan proses terdiri atas proses:</p>
+                                <ul>
+                                    <li>mengamati,</li>
+                                    <li>menanya,</li>
+                                    <li>mengumpulkan informasi,</li>
+                                    <li>mengorganisasikan informasi,</li>
+                                    <li>menarik kesimpulan,</li>
+                                    <li>mengomunikasikan, dan</li>
+                                    <li>merefleksikan dan merencanakan projek lanjutan secara kolaboratif.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Capaian Pembelajaran -->
+        <section id="capaian">
+            <h2 class="section-title">D. CAPAIAN PEMBELAJARAN FASE F</h2>
+            <div class="card">
+                <p><strong>(Umumnya untuk Kelas XI dan XII SMA/MA/Program Paket C)</strong></p>
+                
+                <p>Pada akhir Fase F, peserta didik memahami berbagai permasalahan ekonomi berdasarkan fenomena dan masalah yang terjadi di lingkungan (masyarakat, bangsa, dan antarbangsa). Peserta didik memberikan solusi pemecahan masalah terhadap berbagai permasalahan ekonomi yang terjadi. Peserta didik mengamati, menanya, mengumpulkan informasi, mengorganisasikan informasi, menarik kesimpulan, mengomunikasikan, dan merefleksikan dan merencanakan projek lanjutan secara kolaboratif dalam ruang lingkup ekonomi makro, ekonomi internasional, dan akuntansi keuangan dasar. Capaian Pembelajaran setiap elemen adalah sebagai berikut.</p>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab('pemahaman')">Pemahaman Konsep</button>
+                    <button class="tab-btn" onclick="openTab('keterampilan')">Keterampilan Proses</button>
+                </div>
+                
+                <div id="pemahaman" class="tab-content active">
+                    <p>Peserta didik memahami berbagai konsep dasar ekonomi. Peserta didik memahami peranan akuntansi sebagai alat bantu dalam pengambilan keputusan keuangan dan ekonomi. Peserta didik memahami berbagai permasalahan ekonomi dan keuangan yang terjadi di lingkungan sekitar serta memahami dampak dari permasalahan ekonomi dan keuangan yang sedang terjadi berdasarkan konsep yang sudah dipelajari. Konsep-konsep yang diharapkan dipahami peserta didik pada fase ini, yaitu:</p>
+                    
+                    <ul>
+                        <li>Pendapatan nasional dan pertumbuhan ekonomi serta kaitannya dengan kemiskinan, kesenjangan ekonomi, serta solusi untuk mengatasinya;</li>
+                        <li>Konsep ketenagakerjaan dan masalahnya serta solusi untuk mengatasinya;</li>
+                        <li>Konsep uang dan peredaran uang serta kaitannya dengan inflasi dan kebijakan moneter;</li>
+                        <li>Konsep akuntansi keuangan dasar dalam konteks menilai kondisi keuangan unit usaha (persamaan dasar akuntansi dan laporan keuangan);</li>
+                        <li>Konsep kebijakan fiskal, fungsi anggaran negara dan daerah, dan perpajakan;</li>
+                        <li>Konsep ekonomi internasional dan masalahnya; serta</li>
+                        <li>Konsep literasi ekonomi dan keuangan digital.</li>
+                    </ul>
+                </div>
+                
+                <div id="keterampilan" class="tab-content">
+                    <p>Peserta didik mengamati kondisi dan masalah ekonomi di lingkungan sekitar, regional, atau nasional. Peserta didik mempertanyakan dan memprediksi faktor penyebab, kondisi, dan masalah ekonomi di lingkungan sekitar, regional, atau nasional.</p>
+                    
+                    <p>Peserta didik mengumpulkan informasi berkaitan dengan kondisi dan permasalahan ekonomi di lingkungan sekitar, regional, atau nasional. Peserta didik memvalidasi dan menganalisis informasi yang telah dikumpulkan terkait dengan faktor penyebab kondisi dan permasalahan ekonomi di lingkungan sekitar, regional, atau nasional. Peserta didik menarik kesimpulan terkait faktor penyebab dan memberikan solusi atas kondisi dan permasalahan ekonomi di lingkungan sekitar, regional, atau nasional. Peserta didik mengomunikasikan hasil pengamatan terkait penarikan kesimpulan atas kondisi dan permasalahan ekonomi serta solusi mengatasinya. Peserta didik merefleksikan solusi atas permasalahan ekonomi untuk kepentingan lingkungan sekitar. Peserta didik merencanakan projek lanjutan secara kolaboratif dalam rangka mengurangi permasalahan ekonomi di lingkungan sekitar.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <p>Dokumen Capaian Pembelajaran Mata Pelajaran Ekonomi - BSKAP Nomor 32 Tahun 2024</p>
+        <p>© 2024 Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi</p>
+    </footer>
+    
+    <script>
+        function openTab(tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab content and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
